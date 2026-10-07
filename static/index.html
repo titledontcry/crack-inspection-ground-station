@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Crack Inspection Ground Station</title><link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="/static/overrides.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">⌘</span><strong>Crack<span>Station</span></strong></div>
+    <nav><a class="active">⌘ Control</a><a>◉ Overview</a><a>⌁ Missions</a><a>⌘ Fleet</a><a>⌖ Map view</a></nav>
+    <div class="top-status"><span id="health">กำลังเชื่อมต่อ…</span><b id="clock"></b></div>
+  </header>
+
+  <main class="console">
+    <section class="video-card panel">
+      <div class="video-top"><span class="record-dot">● LIVE</span><span id="live-label">Ground camera feed</span><span class="timer">● <b id="flight-time">--:--</b></span></div>
+      <div id="live-box"><img id="live-image" alt="Live stream from Jetson"><div id="live-empty"><span>◉</span><p>รอ live stream จาก Jetson Nano</p><small>ตั้งค่า <code>live_stream_url</code> ใน config.yaml</small></div><div class="reticle"></div></div>
+      <div class="video-bottom"><span>STREAM <b>HD</b></span><span id="stream-resolution">—</span><span class="green-dot">● LINK READY</span></div>
+    </section>
+
+    <aside class="flight-card panel">
+      <div class="drone-title"><div><h1>PIXHAWK 2</h1><p>Jetson Nano · inspection mission</p></div><div class="drone-icon">⌁</div></div>
+      <div class="battery"><div><span>Battery</span><b id="battery-value">—</b></div><div class="battery-track"><i id="battery-bar"></i></div><small id="battery-detail">Telemetry not connected</small></div>
+      <div class="altitude"><div class="line-head"><span>Altitude / surface distance</span><b id="distance-value">—</b></div><div class="scale"><i></i><i></i><i></i><i class="selected"></i><i></i><i></i><i></i></div><div class="scale-labels"><span>0 m</span><span>5 m</span><span>10 m</span><span>15 m</span></div></div>
+      <div class="flight-actions"><button class="selected">PHOTO MODE</button><button>VIDEO MODE</button></div>
+      <div class="telemetry-grid"><div><span>Speed</span><b id="speed-value">—</b></div><div><span>Lens</span><b id="lens-value">—</b></div><div><span>Height</span><b id="height-value">—</b></div><div><span>ISO</span><b id="iso-value">—</b></div></div>
+      <p class="telemetry-note">ค่าจริงจะแสดงเมื่อ Jetson ส่ง metadata ของภาพเข้ามา</p>
+    </aside>
+
+    <section class="inspection-card panel">
+      <div class="section-head"><div><span class="eyebrow">POST-FLIGHT / LIVE ANALYSIS</span><h2>Inspection results</h2></div><div class="result-actions"><button id="demo-button">DEMO 5 TEST IMAGES</button><span id="count" class="count-pill">0 ภาพ</span></div></div>
+      <div class="table-wrap"><table><thead><tr><th>#</th><th>สถานะ</th><th>เวลาถ่าย</th><th>ชื่อไฟล์</th><th>Original</th><th>AI prediction</th><th>ผลวัดรอยร้าว</th></tr></thead><tbody id="rows"></tbody></table></div>
+    </section>
+  </main>
+
+  <dialog id="detail"><button id="close" aria-label="Close">×</button><span class="eyebrow">INSPECTION DETAIL</span><h2 id="detail-title"></h2><div class="detail-images"><figure><img id="detail-original"><figcaption>Original image</figcaption></figure><figure><img id="detail-overlay"><figcaption>AI prediction overlay</figcaption></figure></div><pre id="detail-data"></pre></dialog>
+  <script src="/static/app.js"></script>
+</body></html>

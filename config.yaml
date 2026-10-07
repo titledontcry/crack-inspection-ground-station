@@ -1,0 +1,12 @@
+# Copy to config.yaml and edit the local settings. config.yaml is intentionally untracked.
+checkpoint: ../runs/model/best_boat.pt
+device: auto                 # auto, cpu, mps, cuda
+threshold: 0.1               # freeze only after final-test approval
+tile_size: 448
+tile_overlap: 0.25
+min_component_px: 20
+live_stream_url: "http://10.196.189.38:8080/live"          # e.g. http://jetson.local:8080/?action=stream
+data_dir: data
+# Local-only convenience for the demo endpoint. These paths are not needed in real flight use.
+demo_dataset_dir: ../Dataset/final_merged_dataset_v1
+demo_manifest: manifest_v2.csv

@@ -1,0 +1,16 @@
+[Unit]
+Description=Crack Inspection Jetson Camera Agent
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=arnon
+WorkingDirectory=/home/arnon/crack-ground-station
+Environment=OPENBLAS_CORETYPE=ARMV8
+ExecStart=/usr/bin/python3 /home/arnon/crack-ground-station/crack_agent.py --endpoint http://GROUND_STATION_IP:8000 --camera /dev/cam_down --capture-interval 5 --port 8080
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

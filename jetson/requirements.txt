@@ -1,0 +1,2 @@
+# JetPack 4.6 ships Python 3.6; newer Requests releases no longer support it.
+requests>=2.22,<2.28
